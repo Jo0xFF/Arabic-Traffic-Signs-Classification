@@ -11,14 +11,11 @@
 </head>
 
 <body>
-  <nav style="background-color: #5e72e4" class="deep-purple darken-3"  role="navigation" style="height: 100px">
+  <nav style="background-color: #5e72e4" class="deep-purple darken-3"  role="navigation" style="height: 100%">
     <div class="nav-wrapper container">
-      <a id="logo-container" class="brand-logo center">
+      <a id="logo-container" class="brand-logo center" style="display: block">
         <h5>Arabic Traffic Signs Classification</h5>
       </a>
-      <div style="margin-left: 800px">
-      	   Made by <a class="orange-text text-lighten-3" href="https://github.com/Jo0xFF">Jo</a>
-      </div>
     </div>
   </nav>
 
@@ -45,7 +42,18 @@
                     </div>                    
                   </div>
         
-                  <div class="row center" style="margin-top: 50px">
+                  <fieldset id="radiofield" style="border: none;">
+                    <label>
+                      <input name="options" type="radio" value="baseline" checked />
+                      <span>Baseline</span>
+                    </label>
+                    <label style="margin-left: 4em">
+                      <input name="options" type="radio" value="baseline_killer"/>
+                      <span>Baseline Killer</span>
+                    </label>
+                  </fieldset>
+
+                  <div class="row center" style="margin-top: 5em">
                     <button id="submit" type="submit" class="btn-large deep-purple darken-3">Check</button>
                   </div>
 
@@ -69,8 +77,11 @@
     </div>
   </div>
 
-  </div>
-  </div>
+  <footer style="background-color: #5e72e4" class="deep-purple darken-3 footer">
+      <div style="margin: auto; text-align: center; color: white">
+      	   Made by <a class="orange-text text-lighten-3" href="https://github.com/Jo0xFF">Jo</a>
+      </div>
+  </footer>
 
   <!--  Scripts-->
   <script src="./static/js/materialize.js"></script>
