@@ -133,9 +133,9 @@ the last bit "shuffled" indicates that validation set is shuffled, if not it's n
 
 For a little bit of those reports the key point here what am I want to get was the validation loss so I made a little bar chart for both Shuffled & unshuffled versions:
 
-![Shuffled-version](app\static\misc\Top10_val_loss_shuffled.png)
+![Shuffled-version](https://github.com/Jo0xFF/Arabic-Traffic-Signs-Classification/blob/main/app/static/misc/Top10_val_loss_shuffled.png)
 
-![Unshuffled-version](app\static\misc\Top10_val_loss_not_shuffled.png)
+![Unshuffled-version](https://github.com/Jo0xFF/Arabic-Traffic-Signs-Classification/blob/main/app/static/misc/Top10_val_loss_not_shuffled.png)
 
 Even though it's shown on the reports of this experiment that the shuffled version have less validation loss. I picked the unshuffled version because depending oh what [Jeremy Howard](https://youtu.be/9C06ZPF8Uuc?t=1496) said in his course  that validation set we don't need to shuffle it. but out of curiousity and the machine learning motto we need to experiment and see what result we get is it bad? or not. In the end i went with not shuffling the validation set.
 
@@ -154,8 +154,9 @@ We can see that `val_loss` it's not overfitting and converging to good number bu
 ---
 ### Baseline killer loss metrics
 For `baseline killer model` it's way more optimized for validation loss.
-![accuracy_baseline_killer](app\static\misc\accuracy_baseline_killer.png)
-![loss_baseline_killer](app\static\misc\val_loss_baseline_killer.png)
+![accuracy_baseline_killer](https://github.com/Jo0xFF/Arabic-Traffic-Signs-Classification/blob/main/app/static/misc/accuracy_baseline_killer.png)
+
+![loss_baseline_killer](https://github.com/Jo0xFF/Arabic-Traffic-Signs-Classification/blob/main/app/static/misc/val_loss_baseline_killer.png)
 
 This time with CNN improved it's good and more optimized with loss & accuracy. they near each other both the orange & blue line but not crossing each other in wide length which an indicators that's not overfitting and it has been generalized well.
 
@@ -163,7 +164,7 @@ This time with CNN improved it's good and more optimized with loss & accuracy. t
 ## Confusion matrix
 A good and visual way to compare the predicted labels with true labels (ground truth) in tabular way and it's flexible. The good predictions will form a line from top left to bottom right (diagonal line). The other boxes other than `diagonal line` will be FP (False positives), FN (False negative).
 
-![Confusion_matrix](app\static\misc\confusion_matrix_baseline_killer.png)
+![Confusion_matrix](https://github.com/Jo0xFF/Arabic-Traffic-Signs-Classification/blob/main/app/static/misc/confusion_matrix_baseline_killer.png)
 
 From this evaluation method we can interpret something which as we can see we have high confusion between "front or left" & "front or right" signs, It seems model get highly confused and challenging to differentiate between them.
 
@@ -179,7 +180,7 @@ Lets check the F1 score, which is a metric that combines Recall + Precision toge
 
 That's for binary classification problems, but it's a little bit different for multi-class classification for more information on this: https://parasite.id/blog/2018-12-13-model-evaluation/
 
-![F1 score](app\static\misc\F1_score.png)
+![F1 score](https://github.com/Jo0xFF/Arabic-Traffic-Signs-Classification/blob/main/app/static/misc/F1_score.png)
 
 We can see here the bottom 6 classes are similar to each other in visual!. That's a challenge to discuss later on.
 
@@ -196,7 +197,7 @@ We can see that some of the labels the model gets it wrong and we need to improv
 ### For Baseline killer architecture
 Lets visualize the Baseline killer(CNN improved model V2) and see if it gets more correct predictions.
 
-![test_data_cnn_improved](app\static\misc\test_data_viz.png)
+![test_data_cnn_improved](https://github.com/Jo0xFF/Arabic-Traffic-Signs-Classification/blob/main/app/static/misc/test_data_viz.png)
 
 Well, as we can see 3 wrong predictions and it's fair enough for model with 52% loss rate.
 
