@@ -49,6 +49,7 @@ def index():
 
 	# Execute if reuqest is post
 	if request.method == "POST":
+		option = request.form['options']
 		image_upload = request.files['image_upload']
 		imagename = image_upload.filename
 		image = Image.open(image_upload)
@@ -57,24 +58,37 @@ def index():
 		# image = tf.image.decode_image(image, channels=3)
 		image_org = np.array(image.convert('RGB'))
 
+		if option == "baseline":
+			image = tf.image.resize(image_org, size=[300, 300])
+			image = tf.cast(image, dtype=tf.float32)
+			image_final_arr = image/255.
 
-		image = tf.image.resize(image_org, size=[300, 300])
-		image = tf.cast(image, dtype=tf.float32)
-		image_final_arr = image/255.
-		# print(image_final_arr)
-		# print(os.getcwd())
+			model_cls = tf.keras.models.load_model("app/static/models/CNN_FINALFIX_68_ACC_86_LOSS_AUG_IMAGEDIR.h5")
+			conf_lvl = model_cls.predict(tf.expand_dims(image_final_arr, axis=0))
+			predicted_label = class_names[conf_lvl.argmax()]
+			confidence_final = f"{round(conf_lvl.max() * 100)}%"
+			
+			img = Image.fromarray(image_org, 'RGB')
+			img.save(os.path.join(app.config['INITIAL_FILE_UPLOADS'], 'image.png'))
+			full_filename =  'static/uploads/image.png'
+			return render_template("index.html", full_filename=full_filename, predicted_label=predicted_label,
+				conf_lvl=confidence_final)
 
+		elif option == "baseline_killer":
+			image = tf.image.resize(image_org, size=[30, 30])
+			image = tf.cast(image, dtype=tf.float32)
+			image_final_arr = image/255.
 
-		model_cls = tf.keras.models.load_model("app/static/models/CNN_FINALFIX_68_ACC_86_LOSS_AUG_IMAGEDIR.h5")
-		conf_lvl = model_cls.predict(tf.expand_dims(image_final_arr, axis=0))
-		predicted_label = class_names[conf_lvl.argmax()]
-		confidence_final = f"{round(conf_lvl.max() * 100)}%"
-		
-		img = Image.fromarray(image_org, 'RGB')
-		img.save(os.path.join(app.config['INITIAL_FILE_UPLOADS'], 'image.png'))
-		full_filename =  'static/uploads/image.png'
-		return render_template("index.html", full_filename=full_filename, predicted_label=predicted_label,
-			conf_lvl=confidence_final)
+			model_cls = tf.keras.models.load_model("app/static/models/CNN_BEATER_OF_BASELINE_ACC_81_LOSS_52_AUG_GEN")
+			conf_lvl = model_cls.predict(tf.expand_dims(image_final_arr, axis=0))
+			predicted_label = class_names[conf_lvl.argmax()]
+			confidence_final = f"{round(conf_lvl.max() * 100)}%"
+			
+			img = Image.fromarray(image_org, 'RGB')
+			img.save(os.path.join(app.config['INITIAL_FILE_UPLOADS'], 'image.png'))
+			full_filename =  'static/uploads/image.png'
+			return render_template("index.html", full_filename=full_filename, predicted_label=predicted_label,
+				conf_lvl=confidence_final)
 	   
 # Main function
 if __name__ == '__main__':
